@@ -1,0 +1,2 @@
+# MSklad
+Lite Warehouse system
