@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("Admin") && Request.IsAuthenticated)
+                    {
+
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Roles", "About", "Home")</li>
+                    }
+                    else
+                    {
+                        if (Request.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Номенклатури
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-menu ">
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Доставчици</a><br />
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Клиенти</a><br />
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Типове документи</a><br />
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Складове</a><br />
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Групи материали</a><br />
+                                    <a class="dropdown-item" href="#">Материали</a><br />
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Складова Дейност
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Вход склад</a><br />
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Прехвърляне</a><br />
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Изписване</a><br />
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Продажба</a><br />
+                                    <div class="dropdown-divider"></div><br />
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Справки
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#" style="color: white; padding-left: 10px;">Вход материали</a><br />
+
+                                </div>
+                            </li>
+                        }
+
+                    }
+
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer >
+            <p style="color: dimgray; text-align: center;">&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+

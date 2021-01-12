@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="col-md-12" style="margin-top: 30px;">
+    <h3>Администриране</h3>
+    <div class="list-group col-md-8">
+        @Html.ActionLink("Потребители", "UserList", "Account", null, new { @class = "list-group-item" })
+        @Html.ActionLink("Роли", "Index", "Role", null, new { @class = "list-group-item" })
+
+
+    </div>
+</div>

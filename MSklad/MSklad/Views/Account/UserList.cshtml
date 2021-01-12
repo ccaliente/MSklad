@@ -1,0 +1,44 @@
+﻿@model MSklad.Models.ViewModels.UserListViewModel
+
+    @section Scripts
+    {
+        <script>
+            $(document).ready( function () {
+                $('#tableUsers').DataTable(
+                    {
+                        "responsive": "true",
+                        "ajax": {
+                        "type" : "GET" ,
+                        "url" : "@Url.Action("GetUsers","Account")" ,
+                        "datatype": "json"
+                        },
+                        "columns":
+                        [
+                            { "data": "UserName" },
+                            { "data": "RoleName"}
+                        ],
+                        "language": {
+                            "processing": "<img src='https://gph.is/2gESFHh' />",
+                            "emptytable": "No data found, You may click on <b> Add New </b> button"
+                        },
+
+                    });
+            });
+        </script>
+    }
+<div class="col-md-12" style="margin-top: 30px;">
+    <input type="button" class="btn btn-info" value="Нов потребител" onclick="location.href='@Url.Action("Register", "Account")'" style="margin-bottom: 10px;" />
+    <table id="tableUsers">
+        <thead>
+            <tr>
+                <th>
+                    UserName
+                </th>
+                <th>
+                    RoleName
+                </th>
+            </tr>
+
+        </thead>
+    </table>
+</div>
